@@ -26,38 +26,59 @@ import java.io.InputStreamReader;
 public class ForestController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ForestController.class);
+
     @Autowired
     private ForestService forestService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(ModelMap model) throws IOException, JAXBException {
-
-        model.put("forests", forestService.getAllForests());
-
-        Forests forests = getForests(new StreamSource(new InputStreamReader(getClass().getResourceAsStream("/pucioasa-forests.kml"))));
-        LOGGER.debug("Forests: {}", forests);
-        for (Forest forest : forests.getForests()) {
-            forestService.save(forest);
-        }
+    public String renderIndex(ModelMap model) throws IOException, JAXBException {
         return "home";
     }
 
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String renderHome(ModelMap model) throws IOException, JAXBException {
+        return "home";
+    }
+
+    @RequestMapping(value = "/tech", method = RequestMethod.GET)
+    public String renderTech() {
+        return "tech";
+    }
+
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public String renderAbout() {
+        return "about";
+    }
+
+    @RequestMapping(value = "/forest-work", method = RequestMethod.GET)
+    public String renderForestWork(ModelMap model) throws IOException, JAXBException {
+
+        //model.put("forests", forestService.getAllForests());
+
+/*        Forests forests = getForests(new StreamSource(new InputStreamReader(getClass().getResourceAsStream("/pucioasa-forests.kml"))));
+        LOGGER.debug("Forests: {}", forests);
+        for (Forest forest : forests.getForests()) {
+            forestService.save(forest);
+        }*/
+        return "forest-work";
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String homeWithId(@PathVariable final String id, ModelMap model) throws IOException, JAXBException {
+    public String renderHomeWithId(@PathVariable final String id, ModelMap model) throws IOException, JAXBException {
         model.put("forests", forestService.getAllForests());
         //model.put("forest", forestService.getForest(id));
         return "home";
     }
 
     @RequestMapping(value = "/{id}/forest.kml", method = RequestMethod.GET)
-    public String tech(@PathVariable final String id, ModelMap model) {
+    public String renderTech(@PathVariable final String id, ModelMap model) {
         Forest forest = forestService.getForest(id);
         model.put("coordinates", forest.getCoordinates());
         return "forestKml";
     }
 
     @RequestMapping(value = "/forest.kml", method = RequestMethod.GET)
-    public String techRAandom(ModelMap model) {
+    public String renderRandomForest(ModelMap model) {
         Forest forest = forestService.getRandomForest();
         model.put("coordinates", forest.getCoordinates());
         return "forestKml";
@@ -71,14 +92,6 @@ public class ForestController {
         return root.getValue();
     }
 
-    @RequestMapping(value = "/tech", method = RequestMethod.GET)
-    public String tech() {
-        return "tech";
-    }
 
-    @RequestMapping(value = "/about", method = RequestMethod.GET)
-    public String about() {
-        return "about";
-    }
 
 }
