@@ -5,15 +5,24 @@
 <body onload="initialize()">
 <%@ include file="include-menu.jspf" %>
 <div id="main">
-    <div id="map_canvas" style="width: 800px; height: 615px; float:left; border: 1px solid black;"></div>
-    <div style="float:right">
-        <ul>
-            <c:forEach items="${forests}" var="forest" varStatus="status">
-                <li><a href="/${forest.id}">Forest ${forest.id}</a></li>
-            </c:forEach>
-        </ul>
-    </div>
-    <br style="clear:both;"/>
+    <table>
+        <tr valign="top">
+            <td>
+                <div id="map_canvas" style="width: 800px; height: 615px; float:left; border: 1px solid black;"></div>
+            </td>
+            <td>
+                <form action="forest-work" method="post">
+                    <input type="hidden" name="verdict" value="true"/>
+                    <input type="submit" value="da"/>
+                </form>
+                <br/>
+                <form action="forest-work" method="post">
+                    <input type="hidden" name="verdict" value="false"/>
+                    <input type="submit" value="nu"/>
+                </form>
+            </td>
+        </tr>
+    </table>
 
 </div>
 

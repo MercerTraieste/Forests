@@ -8,9 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -50,7 +48,7 @@ public class ForestController {
     }
 
     @RequestMapping(value = "/forest-work", method = RequestMethod.GET)
-    public String renderForestWork(ModelMap model) throws IOException, JAXBException {
+    public String renderForestWork() throws IOException, JAXBException {
 
         //model.put("forests", forestService.getAllForests());
 
@@ -62,6 +60,12 @@ public class ForestController {
         return "forest-work";
     }
 
+    @RequestMapping(value = "/forest-work", method = RequestMethod.POST)
+    public String actionForestWork(@RequestParam("verdict") Boolean verdict) throws IOException, JAXBException {
+        LOGGER.debug("hey, post! with verdict={}", verdict);
+        return "forest-work";
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String renderHomeWithId(@PathVariable final String id, ModelMap model) throws IOException, JAXBException {
         model.put("forests", forestService.getAllForests());
@@ -70,9 +74,11 @@ public class ForestController {
     }
 
     @RequestMapping(value = "/{id}/forest.kml", method = RequestMethod.GET)
+    @ResponseBody
     public String renderTech(@PathVariable final String id, ModelMap model) {
         Forest forest = forestService.getForest(id);
         model.put("coordinates", forest.getCoordinates());
+        //todo: render xml
         return "forest-kml";
     }
 
