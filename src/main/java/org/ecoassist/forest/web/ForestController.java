@@ -19,7 +19,6 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.helpers.DefaultValidationEventHandler;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 @Controller
 @RequestMapping("/*")
@@ -74,14 +73,14 @@ public class ForestController {
     public String renderTech(@PathVariable final String id, ModelMap model) {
         Forest forest = forestService.getForest(id);
         model.put("coordinates", forest.getCoordinates());
-        return "forestKml";
+        return "forest-kml";
     }
 
     @RequestMapping(value = "/forest.kml", method = RequestMethod.GET)
     public String renderRandomForest(ModelMap model) {
         Forest forest = forestService.getRandomForest();
         model.put("coordinates", forest.getCoordinates());
-        return "forestKml";
+        return "forest-kml";
     }
 
     protected Forests getForests(final StreamSource source) throws JAXBException, IOException {
