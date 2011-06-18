@@ -47,8 +47,8 @@ public class ForestController {
         return "about";
     }
 
-    @RequestMapping(value = "/forest-work", method = RequestMethod.GET)
-    public String renderForestWork() throws IOException, JAXBException {
+    @RequestMapping(value = "/forest-check", method = RequestMethod.GET)
+    public String renderForestCheck() throws IOException, JAXBException {
 
         //model.put("forests", forestService.getAllForests());
 
@@ -57,13 +57,13 @@ public class ForestController {
         for (Forest forest : forests.getForests()) {
             forestService.save(forest);
         }*/
-        return "forest-work";
+        return "forest-check";
     }
 
-    @RequestMapping(value = "/forest-work", method = RequestMethod.POST)
-    public String actionForestWork(@RequestParam("verdict") Boolean verdict) throws IOException, JAXBException {
+    @RequestMapping(value = "/forest-check", method = RequestMethod.POST)
+    public String handleForestCheck(@RequestParam("verdict") Boolean verdict) throws IOException, JAXBException {
         LOGGER.debug("hey, post! with verdict={}", verdict);
-        return "forest-work";
+        return "forest-check";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
