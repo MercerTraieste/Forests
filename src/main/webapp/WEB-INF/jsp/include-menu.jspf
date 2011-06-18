@@ -1,6 +1,6 @@
 <p id="menu">
-    <a href="home">Home</a> |
-    <a href="forest-check">Forest check</a> |
-    <a href="tech">Tech</a> |
-    <a href="about">About</a>
+    <a href="/forest/home">Home</a> |
+    <a href="/forest/forest-check">Forest check</a> |
+    <a href="/forest/tech">Tech</a> |
+    <a href="/forest/about">About</a>
 </p>
