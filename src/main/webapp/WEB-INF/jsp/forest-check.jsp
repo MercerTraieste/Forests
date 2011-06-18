@@ -11,12 +11,12 @@
                 <div id="map_canvas" style="width: 800px; height: 615px; float:left; border: 1px solid black;"></div>
             </td>
             <td>
-                <form action="forest-check.jsp" method="post">
+                <form action="forest-check" method="post">
                     <input type="hidden" name="verdict" value="true"/>
                     <input type="submit" value="da"/>
                 </form>
                 <br/>
-                <form action="forest-check.jsp" method="post">
+                <form action="forest-check" method="post">
                     <input type="hidden" name="verdict" value="false"/>
                     <input type="submit" value="nu"/>
                 </form>
