@@ -4,11 +4,11 @@
         <name>Forests</name>
         <Style id="yellowLineGreenPoly">
             <LineStyle>
-                <color>ffff0000</color>
+                <color>ffff66bb</color>
                 <width>4</width>
             </LineStyle>
             <PolyStyle>
-                <color>ffff0000</color>
+                <color>ffff66bb</color>
             </PolyStyle>
         </Style>
         <Placemark>
