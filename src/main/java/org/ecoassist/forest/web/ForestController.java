@@ -6,6 +6,7 @@ import org.ecoassist.forest.service.ForestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class ForestController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ForestController.class);
 
     @Autowired
+    @Qualifier("mockForestService")
     private ForestService forestService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -74,7 +76,7 @@ public class ForestController {
     }
 
     @RequestMapping(value = "/{id}/forest.kml", method = RequestMethod.GET)
-    @ResponseBody
+    /*@ResponseBody*/
     public String renderTech(@PathVariable final String id, ModelMap model) {
         Forest forest = forestService.getForest(id);
         model.put("coordinates", forest.getCoordinates());
