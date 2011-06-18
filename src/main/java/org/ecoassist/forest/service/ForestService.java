@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ForestService {
     void save(Forest forest);
-    Forest getRandomForest();
+    Forest getRandomForest() throws ForestException;
     Forest getForest(String id);
     List<Forest> getAllForests();
 }

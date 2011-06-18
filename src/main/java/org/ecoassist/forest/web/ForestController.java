@@ -2,6 +2,7 @@ package org.ecoassist.forest.web;
 
 import org.ecoassist.forest.domain.Forest;
 import org.ecoassist.forest.domain.Forests;
+import org.ecoassist.forest.service.ForestException;
 import org.ecoassist.forest.service.ForestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,7 +86,7 @@ public class ForestController {
     }
 
     @RequestMapping(value = "/forest.kml", method = RequestMethod.GET)
-    public String renderRandomForest(ModelMap model) {
+    public String renderRandomForest(ModelMap model) throws ForestException {
         Forest forest = forestService.getRandomForest();
         model.put("coordinates", forest.getCoordinates());
         return "forest-kml";
