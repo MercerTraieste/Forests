@@ -66,7 +66,7 @@
         var myMap = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
         var myParser = new geoXML3.parser({map: myMap, zoom: true, processStyles: true});
-        myParser.parse('/static/pucioasa-forests.kml');
+        myParser.parse('/static/one-forest.xml');
     }
 
 </script>
