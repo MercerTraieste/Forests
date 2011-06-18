@@ -8,7 +8,7 @@
     <table>
         <tr valign="top">
             <td>
-                <div id="map_canvas" style="width: 800px; height: 615px; float:left; border: 1px solid black;"></div>
+                <div id="map_canvas"></div>
             </td>
             <td>
                 <form action="/forest/forest-check" method="post">

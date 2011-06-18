@@ -1,0 +1,6 @@
+#map_canvas {
+    width: 1050px;
+    height: 615px;
+    float: left;
+    border: 1px solid black;
+}
